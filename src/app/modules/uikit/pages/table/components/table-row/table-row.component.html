@@ -1,0 +1,35 @@
+<ng-container >
+  <td class="text-center">
+    <input
+      [(ngModel)]="user.selected"
+      class="checkbox checkbox-sm"
+      data-datatable-row-check="true"
+      type="checkbox"
+      value="28" />
+  </td>
+  <td>
+    <div class="flex items-center gap-2.5">
+      <img
+        alt="user avatar"
+        class="h-9 w-9 shrink-0 rounded-full"
+        src="https://ui-avatars.com/api/?name={{ user.firstName }} {{ user.lastName }}&background=random" />
+      <div class="flex flex-col">
+        <a class="text-sm font-semibold text-foreground hover:text-primary"> {{ user.firstName }} {{ user.lastName }}</a>
+        <a class="text-xs font-medium text-muted-foreground/70 hover:text-primary" href="#">
+          {{ user.phoneNumber }}
+        </a>
+      </div>
+    </div>
+  </td>
+  <td>{{ user.userRole }}</td>
+  <td>
+    {{ user.kycVerificationStatus }}
+  </td>
+  <td>{{ user.address }}</td>
+  <td class="text-center">
+    <button (click)="redirectToProfile()"
+      class="flex h-7 w-7 items-center justify-center rounded-md text-muted-foreground hover:bg-card hover:text-foreground">
+      view
+    </button>
+  </td>
+</ng-container>

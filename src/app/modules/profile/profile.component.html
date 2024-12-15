@@ -1,0 +1,205 @@
+<div class="p-16" *ngIf="userData">
+  <div class="p-8 bg-white shadow mt-24 dark:bg-gray-800">
+    <div class="grid grid-cols-1 sm:grid-cols-3">
+      <!-- Stats Section -->
+      <div class="grid grid-cols-3 text-center order-last sm:order-first mt-20 sm:mt-0">
+        <div>
+          <p class="font-bold text-gray-700 text-xl dark:text-gray-200">{{userData.loans?.length}}</p>
+          <p class="text-gray-400">Loans</p>
+        </div>
+        <div>
+          <p class="font-bold text-gray-700 text-xl dark:text-gray-200">{{userData.beneficiaries?.length}}</p>
+          <p class="text-gray-400">Beneficiaries</p>
+        </div>
+      </div>
+
+      <!-- Avatar Section -->
+      <div class="relative">
+        <div class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl absolute inset-x-0 top-0 -mt-24 flex items-center justify-center">
+          <img [src]="userData.profileUrl" alt="Profile Picture" class="rounded-full h-full w-full">
+        </div>
+      </div>
+
+      <!-- Buttons -->
+      <div class="space-x-8 flex justify-between mt-32 sm:mt-0 sm:justify-center">
+        <button class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+          Add Loan
+        </button>
+        <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+          Send Message
+        </button>
+      </div>
+    </div>
+
+    <div class="flex justify-between">
+      <!-- Profile Info -->
+    <div class="mt-20 text-center border-b pb-12">
+      <h1 class="text-4xl font-medium text-gray-700 dark:text-gray-200">
+        {{fullName}} <span class="font-light text-gray-500">{{age}}</span>
+      </h1>
+      <div class="flex gap-2">
+        <div class="rounded-md bg-blue-600 py-0.5 px-2.5 border border-transparent text-sm text-white transition-all shadow-sm">
+          {{userData.role}}
+        </div>
+        <div class="rounded-md bg-red-600 py-0.5 px-2.5 border border-transparent text-sm text-white transition-all shadow-sm">
+         KYC {{userData.kycVerificationStatus}}
+        </div>
+        <div class="rounded-md bg-cyan-600 py-0.5 px-2.5 border border-transparent text-sm text-white transition-all shadow-sm">
+          {{userData.gender === 'M' ? 'MALE' : 'FEMALE'}}
+        </div>
+        <div class="rounded-md bg-purple-600 py-0.5 px-2.5 border border-transparent text-sm text-white transition-all shadow-sm">
+          {{userData.pin ? 'Pin Created' : 'Pin Not Setup'}}
+        </div>
+      </div>
+      <p class="font-light text-gray-600 mt-3 dark:text-gray-400">{{address}}</p>
+    </div>
+
+    <app-card *ngIf="userData.card" class="mt-20" [fullName]="fullName" [cardNumberLast4Dists]="userData.card.lastFourDigits"></app-card>
+    </div>
+
+    <!-- basic details -->
+    <div *ngIf="userData" class="bg-white overflow-hidden mb-10 shadow rounded-lg border">
+      <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+              Basic Info
+          </h3>
+      </div>
+      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+        <dl class="sm:divide-y sm:divide-gray-200">
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Email
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{userData.email}}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Phone Number
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{userData.phoneNumber}}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    Aadhar number
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{userData.aadharNumber}}
+                </dd>
+            </div>
+            <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                <dt class="text-sm font-medium text-gray-500">
+                    PAN
+                </dt>
+                <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                    {{userData.panNumber}}
+                </dd>
+            </div>
+        </dl>
+      </div>
+    </div>
+
+    <!-- Merchant Info -->
+    <div *ngIf="userData.merchant" class="bg-white overflow-hidden mb-10 shadow rounded-lg border">
+      <div class="px-4 py-5 sm:px-6">
+          <h3 class="text-lg leading-6 font-medium text-gray-900">
+              Merchant Info
+          </h3>
+      </div>
+      <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
+          <dl class="sm:divide-y sm:divide-gray-200">
+              <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">
+                      Shop Name
+                  </dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {{userData.merchant.shopName}}
+                  </dd>
+              </div>
+              <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">
+                      GST number
+                  </dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {{userData.merchant.gstNumber}}
+                  </dd>
+              </div>
+              <div class="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                  <dt class="text-sm font-medium text-gray-500">
+                      MSME number
+                  </dt>
+                  <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+                      {{userData.merchant.msmeNumber}}
+                  </dd>
+              </div>
+          </dl>
+      </div>
+    </div>
+
+    <!-- User Beneficieries -->
+    <div *ngIf="userData.beneficiaries?.length" class="bg-white overflow-hidden shadow rounded-lg border mb-10">
+      <div class="px-6 py-4">
+        <h3 class="text-lg leading-6 mb-5 font-medium text-gray-900">
+          Beneficiaries
+        </h3>
+    
+        <!-- Beneficiary Card -->
+        <div *ngFor = "let beneficiary of userData.beneficiaries" class="space-y-4">
+          <div class="flex justify-between bg-gray-100 p-4 rounded-md">
+            <div>
+              <p class="font-semibold text-gray-700">Name:</p>
+              <p class="text-gray-600">{{beneficiary.nameInBank}}</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700">Account Number:</p>
+              <p class="text-gray-600">{{beneficiary.bankAccountNumber}}</p>
+            </div>
+            <div>
+              <p class="font-semibold text-gray-700">IFSC Code:</p>
+              <p class="text-gray-600">{{beneficiary.ifscCode}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Loans -->
+    <div *ngIf="userData.loans?.length" class="overflow-x-auto">
+      <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
+        <thead>
+          <tr class="bg-gray-100">
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Loan ID</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Name</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Installment Amount</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Overdue Amount</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Total Amount</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Paid Amount</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Loan Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of userData.loans">
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.loanId}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.name}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.installmentAmount}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.overdueAmount}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.totalAmount}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.paidAmount}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">
+              <span [ngClass]="{'text-yellow-800 bg-yellow-100': loan.loanStatus === 'Pending', 
+                'text-red-800 bg-red-100': loan.loanStatus === 'Overdue'
+               }"  class="px-2 py-1 text-sm font-medium rounded-full">
+                {{loan.loanStatus}}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    
+  </div>
+</div>
