@@ -17,7 +17,6 @@ export class TableRowComponent {
   constructor(private router: Router) {}
 
   redirectToProfile() {
-    debugger
     this.router.navigate([`home/profile/${this.user.userid}`])
   }
 }
