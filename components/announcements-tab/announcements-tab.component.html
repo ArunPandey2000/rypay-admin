@@ -1,0 +1,41 @@
+<div>
+    <h2 class="text-xl font-bold mb-4 text-gray-700">Announcements</h2>
+  
+    <!-- Form to add announcements -->
+    <form (ngSubmit)="addAnnouncement()" class="space-y-4">
+      <!-- <div>
+        <label class="block text-gray-600 font-medium mb-1">Title</label>
+        <input
+          type="text"
+          [(ngModel)]="title"
+          name="title"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
+          required
+        />
+      </div> -->
+  
+      <div>
+        <label class="block text-gray-600 font-medium mb-1">Message</label>
+        <textarea
+          [(ngModel)]="description"
+          name="description"
+          class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-blue-300"
+          required
+        ></textarea>
+      </div>
+  
+      <button
+        type="submit"
+        [ngClass]="{'bg-blue-500 hover:bg-blue-600': description, 'bg-gray-500 disabled pointer-events-none': !description}"
+        class="px-4 py-2 text-white rounded"
+      >
+        Make an announcement
+      </button>
+    </form>
+  
+    <!-- List of announcements -->
+    <div *ngFor="let announcement of announcements" class="mt-6 p-4 bg-gray-50 rounded shadow">
+      <p class="text-gray-600">{{ announcement }}</p>
+    </div>
+  </div>
+  

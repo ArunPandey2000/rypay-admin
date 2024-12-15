@@ -1,0 +1,30 @@
+<div class="min-h-screen bg-gray-100">
+    <div class="max-w-4xl mx-auto pt-10">
+      <!-- Tab navigation -->
+      <div class="flex justify-center mb-6">
+        <button
+          class="px-4 py-2 text-white bg-blue-500 rounded-l-md hover:bg-blue-600 focus:outline-none"
+          [class.bg-gray-200]="currentTab !== 'announcements'"
+          [class.text-gray-600]="currentTab !== 'announcements'"
+          (click)="setTab('announcements')"
+        >
+          Announcements
+        </button>
+        <button
+          class="px-4 py-2 text-white bg-blue-500 rounded-r-md hover:bg-blue-600 focus:outline-none"
+          [class.bg-gray-200]="currentTab !== 'sms'"
+          [class.text-gray-600]="currentTab !== 'sms'"
+          (click)="setTab('sms')"
+        >
+          Send SMS
+        </button>
+      </div>
+  
+      <!-- Content -->
+      <div class="bg-white p-6 rounded shadow">
+        <app-announcements-tab *ngIf="currentTab === 'announcements'"></app-announcements-tab>
+        <app-sms-tab *ngIf="currentTab === 'sms'"></app-sms-tab>
+      </div>
+    </div>
+  </div>
+  
