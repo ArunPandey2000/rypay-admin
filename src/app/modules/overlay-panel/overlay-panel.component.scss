@@ -1,0 +1,47 @@
+
+
+.overlay-backdrop{
+  visibility: hidden;
+  + .overlay-panel{
+    transition: bottom 500ms ease-in-out, right 500ms ease-in-out;
+    bottom: -100%;
+    // @include device(lg){
+    //   bottom: 0;
+    //   right: -100%;
+    // }
+    .add-btn{
+      height: 32px;
+      padding:0;
+      justify-content: center;
+    //   @include device('3xl'){
+    //     height: 36px;
+    //   }
+    }
+  }
+  &::after{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: 'rgba(0, 0, 0, 0.6)';
+    z-index: -1;
+    opacity: 0;
+    transition: 500ms ease-in-out;
+    visibility: hidden;
+    // @include device(lg){
+    //   content: '';
+    // }
+  }
+  &-opened{
+    visibility: visible;
+    &::after{
+      visibility: visible;
+      opacity: 1;
+    }
+    + .overlay-panel{
+      bottom: 0;
+      right: 0;
+    }
+  }
+}

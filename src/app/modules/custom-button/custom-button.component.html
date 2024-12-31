@@ -1,0 +1,14 @@
+<buttton id="action-icon" data-e2e-id="action-button" class="slb-btn flex-ic gap-1 cursor-pointer py-1.5 px-3 text-12 3xl:text-14 font-700 rounded-full {{buttonClasses}}"
+  [ngClass]="{
+    'h-6 3xl:h-8':!btnCustomHeight,
+    'justify-center':!buttonIcon,
+    'loader-active': showLoader}"
+  (click)="click($event)">
+  <span data-e2e-id="button-loader" *ngIf="showLoader" class="generic-loader md-loader animate-loader"></span>
+  <svg-icon data-e2e-id="button-icon"
+    *ngIf="buttonIcon"
+    [src]="buttonIcon"
+    class="flex">
+  </svg-icon>
+  <span data-e2e-id="button-label" *ngIf="label">{{label}}</span>
+</buttton>
