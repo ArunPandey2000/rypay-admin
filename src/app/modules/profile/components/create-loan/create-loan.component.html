@@ -1,0 +1,106 @@
+<div class="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-8 mt-10">
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-center mb-6">Manage Loan</h2>
+  
+    <!-- Form -->
+    <form class="space-y-6">
+      <!-- Loan Account Number -->
+      <div class="flex flex-col">
+        <label for="loanAccountNumber" class="text-sm font-medium text-gray-700 mb-2">Enter Loan Account No.</label>
+        <input
+          type="text"
+          id="loanAccountNumber"
+          [(ngModel)]="loanAccountNumber"
+          name="loanAccountNumber"
+          class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          placeholder="Loan Account No."
+          required
+        />
+      </div>
+  
+      <!-- Total Loan Amount -->
+      <div class="flex flex-col">
+        <label for="amount" class="text-sm font-medium text-gray-700 mb-2">Enter Total Loan Amount</label>
+        <div class="flex items-center space-x-4">
+          <input
+            type="range"
+            id="amountSlider"
+            min="1000"
+            max="1000000"
+            step="1000"
+            [(ngModel)]="totalAmount"
+            name="amountSlider"
+            class="w-full"
+          />
+          <input
+            type="number"
+            id="amount"
+            [(ngModel)]="totalAmount"
+            name="amount"
+            class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-24"
+            placeholder="₹0.00"
+            required
+          />
+        </div>
+        <div class="text-sm text-gray-500 mt-1">
+          Selected Amount: {{ totalAmount | currency:'INR':'symbol' }}
+        </div>
+      </div>
+  
+      <!-- Per Month Installment -->
+      <div class="flex flex-col">
+        <label for="installmentAmount" class="text-sm font-medium text-gray-700 mb-2">Enter Per Month Installment</label>
+        <div class="flex items-center space-x-4">
+          <input
+            type="range"
+            id="installmentSlider"
+            min="100"
+            max="50000"
+            step="100"
+            [(ngModel)]="installmentAmount"
+            name="installmentSlider"
+            class="w-full"
+          />
+          <input
+            type="number"
+            id="installmentAmount"
+            [(ngModel)]="installmentAmount"
+            name="installmentAmount"
+            class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 w-24"
+            placeholder="₹0.00"
+            required
+          />
+        </div>
+        <div class="text-sm text-gray-500 mt-1">
+          Selected Installment: {{ installmentAmount | currency:'INR':'symbol' }}
+        </div>
+      </div>
+  
+      <!-- Due Date -->
+      <div class="flex flex-col">
+        <label for="dueDate" class="text-sm font-medium text-gray-700 mb-2">Enter Due Date</label>
+        <input
+          type="date"
+          id="dueDate"
+          [(ngModel)]="dueDate"
+          name="dueDate"
+          class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+          required
+        />
+      </div>
+  
+      <!-- Submit Button -->
+      <div class="flex items-center justify-between space-x-4">
+        <button
+          type="button"
+          (click)="createLoan()"
+          class="w-full py-3 px-4 bg-green-500 text-white font-semibold rounded-md focus:outline-none hover:bg-green-600 transition duration-300"
+        >
+          Create Loan
+        </button>
+      </div>
+    </form>
+  
+    <app-loader *ngIf="showLoader"></app-loader>
+  </div>
+  

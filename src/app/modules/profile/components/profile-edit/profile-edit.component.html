@@ -1,0 +1,278 @@
+<div class="flex items-center justify-center p-12">
+    <div class="mx-auto w-full max-w-[550px] bg-white">
+      <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+        <div class="mb-5">
+            <label class="mb-3 block text-base font-medium text-[#07074D]">
+              User Type
+            </label>
+            <div class="flex items-center gap-4">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="userType"
+                  value="USER"
+                  class="invisible"
+                />
+                <span
+                  class="w-30 px-4 py-2 text-center text-sm font-medium text-gray-800 transition-all hover:bg-gray-400"
+                  [ngClass]="{'bg-blue-600 text-white': isUserType, 'bg-gray-300': !isUserType}">
+                  User
+                </span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="userType"
+                  value="MERCHANT"
+                  class="invisible"
+                />
+                <span
+                  class="inline-block w-30 px-4 py-2 text-center text-sm font-medium text-gray-800 transition-all hover:bg-gray-400"
+                  [ngClass]="{'bg-blue-600 text-white': !isUserType, 'bg-gray-300': isUserType}">
+                  Merchant
+                </span>
+              </label>
+            </div>
+        </div>
+
+        <div class="mb-5">
+            <label class="mb-3 block text-base font-medium text-[#07074D]">
+              Gender
+            </label>
+            <div class="flex items-center gap-4">
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="gender"
+                  value="M"
+                  class="invisible"
+                />
+                <span
+                  class="inline-block w-30 px-4 py-2 text-center text-sm font-medium text-gray-800 transition-all hover:bg-gray-400"
+                  [ngClass]="{'bg-blue-600 text-white': isMale, 'bg-gray-300': !isMale}">
+                  Male
+                </span>
+              </label>
+              <label class="flex items-center cursor-pointer">
+                <input
+                  type="radio"
+                  formControlName="gender"
+                  value="F"
+                  class="invisible"
+                />
+                <span
+                  class="inline-block w-30 px-4 py-2 text-center text-sm font-medium text-gray-800 transition-all"
+                  [ngClass]="{'bg-blue-600 text-white': !isMale, 'bg-gray-300': isMale}">
+                  Female
+                </span>
+              </label>
+            </div>
+        </div>
+          
+        <div class="mb-5 w-1/2">
+          <label for="firstName" class="mb-3 block text-base font-medium text-[#07074D]">
+            First Name
+          </label>
+          <input
+            type="text"
+            id="firstName"
+            formControlName="firstName"
+            placeholder="First Name"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5 w-1/2">
+          <label for="lastName" class="mb-3 block text-base font-medium text-[#07074D]">
+            Last Name
+          </label>
+          <input
+            type="text"
+            id="lastName"
+            formControlName="lastName"
+            placeholder="Last Name"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label for="kycVerificationStatus" class="mb-3 block text-base font-medium text-[#07074D]">
+            KYC Status
+          </label>
+          <select
+            id="kycVerificationStatus"
+            formControlName="kycVerificationStatus"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          >
+            <option value="NOT_INITIATED">Not Initiated</option>
+            <option value="REQUESTED">Requested</option>
+            <option value="REJECTED">Rejected</option>
+            <option value="COMPLETED">Completed</option>
+          </select>
+        </div>
+        
+        <div class="mb-5">
+            <label class="inline-flex items-center cursor-pointer">
+                <input type="checkbox" formControlName="isBlocked" class="sr-only peer">
+                <div class="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                <span class="ms-3 text-sm font-medium text-gray-900 dark:text-gray-300">Block User</span>
+            </label>
+        </div>
+        <div class="mb-5">
+          <label for="phoneNumber" class="mb-3 block text-base font-medium text-[#07074D]">
+            Phone Number
+          </label>
+          <input
+            type="text"
+            id="phoneNumber"
+            formControlName="phoneNumber"
+            placeholder="Enter your phone number"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="mb-5">
+          <label for="email" class="mb-3 block text-base font-medium text-[#07074D]">
+            Email Address
+          </label>
+          <input
+            type="email"
+            id="email"
+            formControlName="email"
+            placeholder="Enter your email"
+            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          />
+        </div>
+        <div class="-mx-3 flex flex-wrap">
+          <div class="w-full px-3 sm:w-1/2">
+            <div class="mb-5">
+              <label for="dob" class="mb-3 block text-base font-medium text-[#07074D]">
+                Date of Birth
+              </label>
+              <input
+                type="date"
+                id="dob"
+                formControlName="dob"
+                class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+              />
+            </div>
+          </div>
+        </div>
+  
+        <div class="mb-5 pt-3">
+          <label class="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
+            Address Details
+          </label>
+          <div formGroupName="address" class="-mx-3 flex flex-wrap">
+            <div class="w-full px-3 sm:w-1/2">
+              <div class="mb-5">
+                <input
+                  type="text"
+                  id="address1"
+                  formControlName="address1"
+                  placeholder="Address Line 1"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+            </div>
+            <div class="w-full px-3 sm:w-1/2">
+              <div class="mb-5">
+                <input
+                  type="text"
+                  id="address2"
+                  formControlName="address2"
+                  placeholder="Address Line 2"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+              </div>
+            </div>
+
+            <div class="w-full px-3 sm:w-1/2">
+                <div class="mb-5">
+                  <input
+                    type="text"
+                    id="city"
+                    formControlName="city"
+                    placeholder="city"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                </div>
+              </div>
+
+              <div class="w-full px-3 sm:w-1/2">
+                <div class="mb-5">
+                  <input
+                    type="text"
+                    id="state"
+                    formControlName="state"
+                    placeholder="state"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                </div>
+              </div>
+
+              <div class="w-full px-3 sm:w-1/2">
+                <div class="mb-5">
+                  <input
+                    type="text"
+                    id="pincode"
+                    formControlName="pincode"
+                    placeholder="pincode"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                </div>
+              </div>
+          </div>
+        </div>
+
+        <div *ngIf="!isUserType" class="mb-5 pt-3">
+            <label class="mb-5 block text-base font-semibold text-[#07074D] sm:text-xl">
+              Merchant Details
+            </label>
+            <div formGroupName="merchant" class="-mx-3 flex flex-wrap">
+              <div class="w-full px-3 sm:w-1/2">
+                <div class="mb-5">
+                  <input
+                    type="text"
+                    id="shopName"
+                    formControlName="shopName"
+                    placeholder="Shop Name"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                </div>
+              </div>
+              <div class="w-full px-3 sm:w-1/2">
+                <div class="mb-5">
+                  <input
+                    type="text"
+                    id="gstNumber"
+                    formControlName="gstNumber"
+                    placeholder="GST number"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                  />
+                </div>
+              </div>
+  
+              <div class="w-full px-3 sm:w-1/2">
+                  <div class="mb-5">
+                    <input
+                      type="text"
+                      id="msmeNumber"
+                      formControlName="msmeNumber"
+                      placeholder="msme Number"
+                      class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                    />
+                  </div>
+                </div>
+            </div>
+          </div>
+  
+        <div>
+          <button
+            type="submit"
+            [ngClass]="{'bg-[#6A64F1]': isFormValueChanged, 'bg-gray-200 pointer-events-none': !isFormValueChanged}"
+            class="hover:shadow-form w-full rounded-md py-3 px-8 text-center text-base font-semibold text-white outline-none">
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -1,0 +1,10 @@
+<div>
+    <!-- Header -->
+    <app-money-request-header></app-money-request-header>
+    <div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
+      <money-request-table (filterUpdated)="updateResult($event)" [moneyRequests]="transactions"></money-request-table>
+      <app-pagination [currentPage]="page" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
+    </div>
+    <!-- end Header -->
+</div>
+  

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfile } from './model/profile.model';
+import { ProfileService } from './services/profile.service';
+import { Wallet } from './model/wallet.model';
 
 @Component({
     selector: 'app-profile',
@@ -10,9 +12,14 @@ import { UserProfile } from './model/profile.model';
 })
 export class ProfileComponent implements OnInit {
     userId!: string;
+    selectedEditComponent =  '';
+    overlayTitle!: string;
+    animatePanel = false;
     userData: UserProfile | null = null;
     isLoading: boolean = false;
-    constructor(private route: ActivatedRoute, private apiService: ApiService) {}
+    constructor(private route: ActivatedRoute, private apiService: ApiService,
+        private profileService: ProfileService
+    ) {}
 
     ngOnInit(): void {
         this.route.params.subscribe((params) => {
@@ -28,6 +35,9 @@ export class ProfileComponent implements OnInit {
         ${this.userData.address.address1} ${this.userData.address.address2}, ${this.userData.address.city},
          ${this.userData.address.state}, ${this.userData.address.pincode} 
         ` : ``
+    }
+    get lastFourDigits() {
+        return this.userData?.card?.lastFourDigits || `1234`;
     }
 
     get fullName() {
@@ -60,5 +70,37 @@ export class ProfileComponent implements OnInit {
         });
         this.isLoading = false;
         this.userData = result.data;
+    }
+    close() {
+        this.animatePanel = false;
+    }
+
+    updateProfile(user: UserProfile) {
+        this.userData = user;
+        this.close();
+    }
+
+    openProfileEditOverlay() {
+        this.selectedEditComponent = 'profile';
+        this.overlayTitle = 'Update Profile';
+        this.animatePanel = true;
+    }
+    createLoan() {
+        this.selectedEditComponent = 'loan';
+        this.overlayTitle = 'Add New Loan';
+        this.animatePanel = true;
+    }
+    closeLoanOverlay() {
+        this.close();
+        this.fetchUserData(this.userId)
+    }
+    openWalletEditOverlay() {
+        this.selectedEditComponent = 'wallet';
+        this.overlayTitle = 'Update Wallet';
+        this.animatePanel = true;
+    }
+
+    updateBalance(wallet: Wallet) {
+        this.profileService.balanceUpdated.next(wallet);
     }
 }

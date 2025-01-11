@@ -1,0 +1,36 @@
+<div *ngIf="walletData" class="max-w-sm mx-auto bg-gradient-to-tr from-purple-600 via-indigo-500 to-blue-500 rounded-2xl p-8 shadow-2xl text-white transform hover:scale-105 transition-transform duration-300">
+    <!-- Top Section -->
+    <div class="flex items-center justify-between mb-6">
+      <h2 class="mr-3 text-xl font-bold uppercase tracking-wider">Wallet Info</h2>
+      <div class="cursor-pointer mr-3 bg-white bg-opacity-20 p-2 rounded-full shadow-lg" (click)="refreshBalance()">
+        <svg-icon src="assets/icons/heroicons/outline/refresh.svg"></svg-icon>
+      </div>
+      <div (click)="openEditOverlay.emit()" class="cursor-pointer bg-opacity-20 p-2 rounded-full shadow-lg">
+        <svg class="w-6 h-6 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M12 5l7 7-7 7" />
+        </svg>
+      </div>
+    </div>
+  
+    <!-- Wallet Amount -->
+    <div class="mb-8">
+      <p class="text-sm uppercase opacity-80 tracking-wide">Available Balance</p>
+      <p class="text-4xl font-extrabold mt-2">{{walletData.balance| currency : 'INR'}}</p>
+      <p class="text-sm opacity-70 mt-1">Last updated: {{walletData.updatedAt | date: 'MMM d, y, h:mm a'}}</p>
+    </div>
+  
+    <!-- Wallet ID -->
+    <div class="flex items-center justify-between">
+      <div>
+        <p class="text-sm uppercase opacity-80 tracking-wide">Wallet ID</p>
+        <p class="text-lg font-medium mt-2">{{walletData.walletAccountNo}}</p>
+      </div>
+      <div class="bg-white bg-opacity-20 px-3 py-1 rounded-full shadow-lg">
+        <p class="text-sm font-bold">{{walletData.status}}</p>
+      </div>
+    </div>
+  
+    <!-- Bottom Glow -->
+    <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-48 h-48 bg-purple-500 bg-opacity-30 blur-3xl"></div>
+  </div>
+  

@@ -4,6 +4,7 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 @import 'tailwindcss/base';
+@tailwind base;
 @layer base {
   :root {
     --background: 0 0% 100%;

@@ -2,8 +2,8 @@
   <!-- Header -->
   <app-dashboard-header></app-dashboard-header>
   <div class="flex-col rounded-lg bg-background px-8 py-8 sm:flex-row">
-    <transaction-table [transactions]="transactions"></transaction-table>
-    <app-pagination [currentPage]="page" [totalPages]="100" (pageChange)="onPageChange($event)"></app-pagination>
+    <transaction-table (filterUpdated)="updateResult($event)" [transactions]="transactions"></transaction-table>
+    <app-pagination [currentPage]="page" [totalPages]="totalPages" (pageChange)="onPageChange($event)"></app-pagination>
   </div>
   <!-- end Header -->
 </div>

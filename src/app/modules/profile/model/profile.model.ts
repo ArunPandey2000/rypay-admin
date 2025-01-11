@@ -6,6 +6,7 @@ export interface UserProfile {
     panNumber: string;
     kycVerificationStatus: number;
     gender: string;
+    isBlocked: boolean;
     cardHolderId: string;
     createdAt: string;
     updatedAt: string;
@@ -68,12 +69,12 @@ export interface UserProfile {
   
   export interface Loan {
     id: number;
-    loanId: string,
+    loanAccount: string,
     name: string,
     installmentAmount: string,
     overdueAmount: string,
     totalAmount: string,
-    paidAmount: string,
+    dueDate: string,
     loanStatus: string,
   }
   

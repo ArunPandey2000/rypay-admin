@@ -1,0 +1,54 @@
+<div class="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-8 mt-10">
+    <!-- Title -->
+    <h2 class="text-2xl font-semibold text-center mb-6">Manage Your Wallet</h2>
+  
+    <!-- Form -->
+    <form class="space-y-6">
+      <!-- Amount Input -->
+      <div class="flex flex-col">
+        <label for="amount" class="text-sm font-medium text-gray-700 mb-2">Enter Amount</label>
+        <input 
+          type="number" 
+          id="amount" 
+          [(ngModel)]="amount"
+          name="amount" 
+          class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+          placeholder="₹0.00" 
+          required
+        />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="message" class="text-sm font-medium text-gray-700 mb-2">Enter Message</label>
+        <input 
+          type="text" 
+          id="message" 
+          [(ngModel)]="message"
+          name="message" 
+          class="py-3 px-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" 
+          placeholder="...." 
+          required
+        />
+      </div>
+
+      <div class="flex items-center justify-between space-x-4">
+        <button 
+          type="button" 
+          (click)="updateBalance('CREDIT')"
+          class="w-full py-3 px-4 bg-green-500 text-white font-semibold rounded-md focus:outline-none hover:bg-green-600 transition duration-300"
+        >
+          Add Money
+        </button>
+        <button 
+          type="button" 
+          (click)="updateBalance('DEBIT')"
+          class="w-full py-3 px-4 bg-red-500 text-white font-semibold rounded-md focus:outline-none hover:bg-red-600 transition duration-300"
+        >
+          Deduct Money
+        </button>
+      </div>
+    </form>
+
+    <app-loader *ngIf="showLoader"></app-loader>
+  </div>
+  

@@ -22,6 +22,11 @@ export class Menu {
           label: 'Users',
           route: '../users',
         },
+        {
+          icon: 'assets/icons/heroicons/solid/play.svg',
+          label: 'money-request',
+          route: '../money',
+        },
       ],
     },
     {

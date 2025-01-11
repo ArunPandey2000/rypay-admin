@@ -22,7 +22,7 @@
 
       <!-- Buttons -->
       <div class="space-x-8 flex justify-between mt-32 sm:mt-0 sm:justify-center">
-        <button class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+        <button (click)="createLoan()" class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
           Add Loan
         </button>
         <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
@@ -54,15 +54,17 @@
       <p class="font-light text-gray-600 mt-3 dark:text-gray-400">{{address}}</p>
     </div>
 
-    <app-card *ngIf="userData.card" class="mt-20" [fullName]="fullName" [cardNumberLast4Dists]="userData.card.lastFourDigits"></app-card>
+    <app-wallet (openEditOverlay)="openWalletEditOverlay()" [userId]="userId" class="mt-20"></app-wallet>
+    <app-card class="mt-20" [fullName]="fullName" [cardNumberLast4Dists]="lastFourDigits"></app-card>
     </div>
 
     <!-- basic details -->
-    <div *ngIf="userData" class="bg-white overflow-hidden mb-10 shadow rounded-lg border">
-      <div class="px-4 py-5 sm:px-6">
+    <div *ngIf="userData" class=" mt-20 bg-white overflow-hidden mb-10 shadow rounded-lg border">
+      <div class="flex justify-between px-4 py-5 sm:px-6">
           <h3 class="text-lg leading-6 font-medium text-gray-900">
               Basic Info
           </h3>
+          <svg-icon (click)="openProfileEditOverlay()" class="px-6 icon-gray text-24 leading-[1] cursor-pointer" src="assets\icons\heroicons\outline\edit.svg"></svg-icon>
       </div>
       <div class="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl class="sm:divide-y sm:divide-gray-200">
@@ -171,23 +173,21 @@
       <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-md">
         <thead>
           <tr class="bg-gray-100">
-            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Loan ID</th>
-            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Name</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Loan Account#</th>
             <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Installment Amount</th>
             <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Overdue Amount</th>
             <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Total Amount</th>
-            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Paid Amount</th>
+            <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Due Date</th>
             <th class="text-left px-6 py-4 font-medium text-gray-700 border-b">Loan Status</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let loan of userData.loans">
-            <td class="px-6 py-4 text-gray-600 border-b">{{loan.loanId}}</td>
-            <td class="px-6 py-4 text-gray-600 border-b">{{loan.name}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.loanAccount}}</td>
             <td class="px-6 py-4 text-gray-600 border-b">{{loan.installmentAmount}}</td>
             <td class="px-6 py-4 text-gray-600 border-b">{{loan.overdueAmount}}</td>
             <td class="px-6 py-4 text-gray-600 border-b">{{loan.totalAmount}}</td>
-            <td class="px-6 py-4 text-gray-600 border-b">{{loan.paidAmount}}</td>
+            <td class="px-6 py-4 text-gray-600 border-b">{{loan.dueDate | date: 'dd/MM/YY'}}</td>
             <td class="px-6 py-4 text-gray-600 border-b">
               <span [ngClass]="{'text-yellow-800 bg-yellow-100': loan.loanStatus === 'Pending', 
                 'text-red-800 bg-red-100': loan.loanStatus === 'Overdue'
@@ -203,3 +203,16 @@
     
   </div>
 </div>
+
+<app-overlay-panel [animatePanel]="animatePanel" (closePanel)="close()"
+   [showSecondaryButton]="true"
+   [showPrimaryButton]="true"
+   [showOverlayTitle]="true"
+   [overlayTitle]="overlayTitle"
+   class="overlay">
+   <ng-container [ngSwitch]="selectedEditComponent">
+    <app-profile-edit *ngSwitchCase="'profile'" [userId]="userId" (userProfileUpdated)="updateProfile($event)" [userData]="userData"></app-profile-edit>
+    <app-wallet-edit [userId]="userId" *ngSwitchCase="'wallet'"></app-wallet-edit>
+    <app-create-loan [userId]="userId" (closeOverlay)="closeLoanOverlay()" *ngSwitchCase="'loan'"></app-create-loan>
+  </ng-container>
+</app-overlay-panel>

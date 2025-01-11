@@ -1,12 +1,13 @@
 import { NgClass } from '@angular/common';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ErrorHandler } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { NgxSonnerToaster } from 'ngx-sonner';
 import { ThemeService } from './core/services/theme.service';
 import { JwtInterceptor } from './modules/auth/interceptors/auth.interceptor';
 import { ResponsiveHelperComponent } from './shared/components/responsive-helper/responsive-helper.component';
 import { GlobalDataService } from './core/services/global.service';
+import { GlobalErrorHandler } from './core/services/globa-error-handler.service';
 
 @Component({
   selector: 'app-root',
@@ -14,6 +15,10 @@ import { GlobalDataService } from './core/services/global.service';
   styleUrl: './app.component.scss',
   standalone: true,
   providers: [
+    {
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   ],
   imports: [NgClass, RouterOutlet, ResponsiveHelperComponent, NgxSonnerToaster],

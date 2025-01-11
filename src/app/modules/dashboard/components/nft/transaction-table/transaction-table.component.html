@@ -1,15 +1,4 @@
-
-<div class="mb-4 flex items-center justify-between">
-    <div class="flex-col items-center">
-    <h3 class="text-md font-bold text-foreground">Active Auctions</h3>
-    <span class="text-xs text-muted-foreground">Updated 37 minutes ago</span>
-    </div>
-    <button
-    class="flex-none rounded-md bg-card px-4 py-2.5 text-xs font-semibold text-muted-foreground hover:bg-muted hover:text-foreground">
-    History
-    </button>
-</div>
-
+<app-header-filter (headerFilter)="filterUpdated.emit($event)" [title]="'Transactions'"></app-header-filter>
 <div class="relative overflow-x-auto">
     <table class="w-full table-auto">
     <!--Table head-->

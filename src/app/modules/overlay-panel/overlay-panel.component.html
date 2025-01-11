@@ -4,7 +4,7 @@
 <div data-e2e-id="overlay-panel" class="block modal overlay-panel lg:shadow-dialog fixed right-0 w-full h-[calc(100%-32px)] lg:w-[605px] lg:h-full mdm:rounded-t-2xl z-20">
   <div class="flex-dc modal-content h-full w-full py-4 3xl:py-6 px-2 3xl:px-4 bg-white mdm:rounded-t-2xl">
     <!-- modal header -->
-    <div *ngIf="showOverlayTitle" data-e2e-id="overlay-panel-header" class="modal-header relative px-2 flex-ic-jb flex-wrap mb-4 3xl:mb-6">
+    <div *ngIf="showOverlayTitle" data-e2e-id="overlay-panel-header" class="modal-header relative px-2 flex-ic-jb flex-wrap mb-4 3xl:mb-6 flex justify-between">
       <h4 *ngIf="overlayTitle" class="text-21 3xl:text-27 font-450 text-slb-gray-900 flex-ic gap-2 3xl:gap-4">
         <svg-icon data-e2e-id="overlay-panel-header-back-icon" data-e2e-id="overlay-back-btn" [src]="'assets/icons/heroicons/outline/left.svg'" *ngIf="showBackButton"
           class="flex cursor-pointer icon-gray text-18 3xl:text-24 leading-[1] mt-1 3xl:mt-1.5" (click)="backButtonClicked.emit()">
@@ -18,7 +18,7 @@
       <ng-content select="[overlaySubTitle]"></ng-content>
     </div>
     <!-- modal body -->
-    <div data-e2e-id="overlay-panel-body" id="modal-body" class="modal-body flex-auto overflow-hidden overlay-modal-spacing">
+    <div data-e2e-id="overlay-panel-body" id="modal-body" class="h-[calc(100%-10px)] overflow-y-auto">
       <ng-content [select]="overlayComponent"></ng-content>
     </div>
     <!-- modal footer -->

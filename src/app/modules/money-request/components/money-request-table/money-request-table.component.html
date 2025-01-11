@@ -1,0 +1,27 @@
+<app-header-filter [types]="moneyRequestTypes" (headerFilter)="filterUpdated.emit($event)" [title]="'Money Requests'"></app-header-filter>
+<div class="relative overflow-x-auto">
+    <table class="w-full table-auto">
+    <!--Table head-->
+    <thead class="text-xs uppercase text-muted-foreground">
+        <tr>
+        <th class="py-2 text-left">profile</th>
+        <th class="py-2 text-center">Amount</th>
+        <th class="py-2 text-center">UTR</th>
+        <th class="py-2 text-center">mode of Payment</th>
+        <th class="py-2 text-center">Date</th>
+        <th class="py-2 text-center">Status</th>
+        <th class="py-2 text-center">Action</th>
+        </tr>
+    </thead>
+    <!--end Table head-->
+    <!--Table body-->
+    <tbody>
+        <tr money-request-row *ngFor="let moneyRequest of moneyRequests"
+        [moneyRequest]="moneyRequest"
+        class="border-b border-dashed border-border hover:bg-card">
+        </tr>
+    </tbody>
+    <!--end::Table body-->
+    </table>
+</div>
+

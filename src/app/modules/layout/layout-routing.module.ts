@@ -10,6 +10,12 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('../dashboard/dashboard.module').then((m) => m.DashboardModule),
   },
+  {
+    path: 'money',
+    component: LayoutComponent,
+    canActivate: [AuthGuard],
+    loadChildren: () => import('../money-request/money-request.module').then((m) => m.MoneyRequestModule),
+  },
   { path: 'announcement',
     component: LayoutComponent,
     canActivate: [AuthGuard],

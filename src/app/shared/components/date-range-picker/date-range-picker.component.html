@@ -1,0 +1,78 @@
+<div class="relative" clickOutside (clickOutside)="showPicker = false">
+    <!-- Trigger Button -->
+    <button
+      class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700"
+      (click)="togglePicker()"
+    >
+      Date Range
+    </button>
+  
+    <!-- Date Range Picker Overlay -->
+    <div
+      *ngIf="showPicker"
+      class="absolute top-12 left-0 z-10 p-4 bg-white shadow-lg rounded-md max-w-lg flex"
+    >
+      <!-- Predefined Buttons (Left Side) -->
+      <div class="flex-none w-48 space-y-2">
+        <button
+          class="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="selectOption('today')"
+        >
+          Today
+        </button>
+        <button
+          class="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="selectOption('yesterday')"
+        >
+          Yesterday
+        </button>
+        <button
+          class="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="selectOption('lastWeek')"
+        >
+          Last Week
+        </button>
+        <button
+          class="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="selectOption('lastMonth')"
+        >
+          Last Month
+        </button>
+        <button
+          class="w-full px-4 py-2 text-sm bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          (click)="selectOption('year')"
+        >
+          Year
+        </button>
+      </div>
+  
+      <!-- Custom Date Range Picker (Right Side) -->
+      <div class="flex-grow pl-4">
+        <h3 class="text-lg font-semibold mb-4">Custom Date Range</h3>
+  
+        <div class="space-y-2">
+          <label class="block text-sm font-medium text-gray-700">From:</label>
+          <input
+            type="date"
+            [(ngModel)]="customFrom"
+            class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+          />
+  
+          <label class="block text-sm font-medium text-gray-700">To:</label>
+          <input
+            type="date"
+            [(ngModel)]="customTo"
+            class="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+          />
+  
+          <button
+            class="w-full mt-4 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+            (click)="applyCustomRange()"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

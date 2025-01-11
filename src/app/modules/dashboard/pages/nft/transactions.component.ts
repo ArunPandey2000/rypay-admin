@@ -4,6 +4,7 @@ import { TransactionHeaderComponent } from '../../components/nft/dashboard-heade
 import { TransactionTableComponent } from '../../components/nft/transaction-table/transaction-table.component';
 import { Transaction } from '../../models/transaction-data.model';
 import { PaginationComponent } from 'src/app/shared/components/pagination/pagination.component';
+import { HeaderFilter } from 'src/app/shared/components/header-filter/header-filter.interface';
 
 @Component({
     selector: 'app-transactions',
@@ -20,6 +21,7 @@ export class transactionsComponent implements OnInit {
   fromDate = new Date();
   toDate = new Date();
   sortDirection = 'ASC';
+  transactionType = '';
   totalPages = 1;
   page = 1;
   transactions: Transaction[] = [];
@@ -38,11 +40,22 @@ export class transactionsComponent implements OnInit {
       "fromDate": this.fromDate,
       "toDate": this.toDate,
       "search": this.search,
-      "sortDirection": this.sortDirection
+      "sortDirection": this.sortDirection,
+      "transactionType": this.transactionType,
     }
   }
 
   async ngOnInit() {
+    this.handleFilter();
+  }
+
+  updateResult(filter: HeaderFilter) {
+    this.search = filter.search;
+    this.toDate = filter.to;
+    this.fromDate = filter.from;
+    this.sortDirection = filter.sort;
+    this.transactionType = filter.type;
+    this.page = 1;
     this.handleFilter();
   }
 

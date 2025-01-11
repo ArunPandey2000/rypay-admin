@@ -1,0 +1,19 @@
+<div class="flex flex-wrap items-center justify-between gap-2 py-3 px-5">
+    <h3 *ngIf="title" class="text-sm font-medium text-muted-foreground">{{title}}</h3>
+    <div class="flex flex-wrap gap-2">
+      
+      <app-search-bar [searchQuery]="filter.search"  (search)="onSearchChange($event)"></app-search-bar>
+
+      <app-date-range-picker  (rangeSelected)="selectRange($event)" class="gap-2"></app-date-range-picker>
+
+      <div class="flex flex-wrap gap-2.5">
+        <select name="status" class="w-28 p-2 text-muted-foreground" [value]="filter.type" (change)="onTypeChange($event)">
+          <option *ngFor="let type of types" [value]="type.value">{{type.label}}</option>
+        </select>
+        <select name="order" class="w-28 p-2 text-muted-foreground" [value]="filter.sort" (change)="onSortChange($event)">
+          <option value="DESC">Newest</option>
+          <option value="ASC">Oldest</option>
+        </select>
+      </div>
+    </div>
+</div>

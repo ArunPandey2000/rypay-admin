@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'https://api.riyadhmicrofinance.com',
+  // baseUrl: 'https://api.riyadhmicrofinance.com',
+  baseUrl: 'http://localhost:3000',
   userRoles: ['user', 'admin',]
 };
 
