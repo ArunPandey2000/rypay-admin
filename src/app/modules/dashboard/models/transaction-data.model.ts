@@ -1,3 +1,5 @@
+import { User } from "../../uikit/pages/table/model/user.model";
+
 export interface CounterPartyUser {
     id: string;
     firstName: string;
@@ -20,5 +22,6 @@ export interface Transaction {
     updatedAt: string;
     serviceUsed: string;
     counterPartyUser: CounterPartyUser;
+    user: User
 }
   

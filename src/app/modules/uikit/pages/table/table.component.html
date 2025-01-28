@@ -1,4 +1,4 @@
-<div class="mb-4 flex justify-between">
+<!-- <div class="mb-4 flex justify-between">
   <div class="inline-block">
     <h3 class="font-semibold text-foreground">Team Members</h3>
     <div class="space-x-1 text-xs font-medium text-muted-foreground">
@@ -38,4 +38,37 @@
     </table>
   </div>
   <app-table-footer></app-table-footer>
+</div> -->
+
+<!-- <app-header-filter [types]="transactionsTypes" (headerFilter)="filterUpdated.emit($event)" [title]="'Users'"></app-header-filter> -->
+<div class="relative overflow-x-auto flex min-w-full flex-col rounded-xl border border-muted/20 bg-background p-2">
+    <table class="w-full table-auto">
+    <!--Table head-->
+    <thead class="text-xs uppercase text-muted-foreground">
+        <tr>
+        <th class="text-left px-8">profile</th>
+        <th class="text-left px-8">Role</th>
+        <th class="text-left px-8">Aadhaar#</th>
+        <th class="text-left px-8">DOB</th>
+        <th class="text-left px-8">PAN</th>
+        <th class="text-left px-8">Blocked</th>
+        <th class="text-left px-8">KYC Status</th>
+        <th class="text-left px-2">View</th>
+        </tr>
+    </thead>
+    <!--end Table head-->
+    <!--Table body-->
+    <tbody>
+      @for (user of users(); track $index) {
+      <tr class="hover:bg-card/50" app-table-row [user]="user"></tr>
+      } @empty {
+      <tr>
+        <td class="py-4 text-center text-sm" colspan="7">No users found</td>
+      </tr>
+      }
+    </tbody>
+    <!--end::Table body-->
+    </table>
 </div>
+
+

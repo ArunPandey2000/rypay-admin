@@ -2,8 +2,8 @@
   <div class="flex items-center">
     <!-- <img [src]="transaction.image" class="mr-2 h-10 w-10 flex-none rounded-sm" alt="" /> -->
     <div class="flex flex-col justify-items-start">
-      <a href="#" class="mb-1 text-sm font-semibold text-foreground">{{ transaction.counterPartyUser?.firstName }} {{ transaction.counterPartyUser?.lastName }}</a>
-      <span class="text-xs font-semibold text-muted-foreground/50">test</span>
+      <a href="#" class="mb-1 text-sm font-semibold text-foreground">{{ transaction.user?.firstName }} {{ transaction.user?.lastName }}</a>
+      <span class="text-xs font-semibold text-muted-foreground/50">{{transaction.user.phoneNumber}}</span>
     </div>
   </div>
 </td>
@@ -22,6 +22,6 @@
 <td class="py-2 pl-2 text-center">
   <span class="text-sm font-semibold text-muted-foreground">{{ transaction.serviceUsed }}</span>
 </td>
-<td class="py-2 pl-2 text-center">
-  <a href="#" class="text-sm font-semibold text-muted-foreground">view</a>
+<td class="py-2 pl-2 text-center cursor-pointer" (click)="redirectToProfile()">
+  <a class="text-sm font-semibold text-muted-foreground">view</a>
 </td>

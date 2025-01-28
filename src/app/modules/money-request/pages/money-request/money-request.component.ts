@@ -46,7 +46,6 @@ export class MoneyRequestComponent implements OnInit {
   }
 
   async ngOnInit() {
-    debugger
     this.handleFilter();
   }
 

@@ -1,4 +1,4 @@
-<app-header-filter (headerFilter)="filterUpdated.emit($event)" [title]="'Transactions'"></app-header-filter>
+<app-header-filter [types]="transactionsTypes" (headerFilter)="filterUpdated.emit($event)" [title]="'Transactions'"></app-header-filter>
 <div class="relative overflow-x-auto">
     <table class="w-full table-auto">
     <!--Table head-->
