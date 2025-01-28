@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build",
     "build:prod": "ng build --configuration production",
+    "copy-dist": "ncp dist/admin-app /var/www/html/sites",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -43,6 +44,7 @@
     "karma-coverage": "~2.2.0",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+    "ncp": "^2.0.0",
     "prettier-plugin-tailwindcss": "^0.6.9",
     "tailwind-scrollbar": "^3.1.0",
     "tailwindcss": "^3.4.15",
