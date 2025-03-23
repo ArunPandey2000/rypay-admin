@@ -25,6 +25,9 @@
         <button (click)="createLoan()" class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
           Add Loan
         </button>
+        <button *ngIf="isMerchant" (click)="openQRUploadEditOverlay()" class="text-white py-2 px-4 uppercase rounded bg-blue-400 hover:bg-blue-500 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
+          Upload QR
+        </button>
         <button class="text-white py-2 px-4 uppercase rounded bg-gray-700 hover:bg-gray-800 shadow hover:shadow-lg font-medium transition transform hover:-translate-y-0.5">
           Send Message
         </button>
@@ -213,6 +216,7 @@
    <ng-container [ngSwitch]="selectedEditComponent">
     <app-profile-edit *ngSwitchCase="'profile'" [userId]="userId" (userProfileUpdated)="updateProfile($event)" [userData]="userData"></app-profile-edit>
     <app-wallet-edit [userId]="userId" *ngSwitchCase="'wallet'"></app-wallet-edit>
+    <app-static-qr-upload [userId]="userId" (closeOverlay)="close()" *ngSwitchCase="'qrUpload'"></app-static-qr-upload>
     <app-create-loan [userId]="userId" (closeOverlay)="closeLoanOverlay()" *ngSwitchCase="'loan'"></app-create-loan>
   </ng-container>
 </app-overlay-panel>

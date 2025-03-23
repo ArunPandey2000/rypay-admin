@@ -12,6 +12,7 @@ import { WalletEditComponent } from './components/wallet-edit/wallet-edit.compon
 import { LoaderComponent } from 'src/app/shared/components/loader/loader.component';
 import { ProfileService } from './services/profile.service';
 import { CreateLoanComponent } from './components/create-loan/create-loan.component';
+import { StaticQRUploadComponent } from './components/static-qr-upload/static-qr-upload.component';
 
 const routes: Routes = [
   {
@@ -21,7 +22,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [ProfileComponent, CreateLoanComponent, ProfileEditComponent, WalletComponent, WalletEditComponent],
+  declarations: [ProfileComponent, CreateLoanComponent, StaticQRUploadComponent, ProfileEditComponent, WalletComponent, WalletEditComponent],
   providers: [ProfileService],
   imports: [RouterModule.forChild(routes), FormsModule, ReactiveFormsModule, CommonModule, CardComponent, LoaderComponent, AngularSvgIconModule, OverlayPanelComponent],
   exports: [RouterModule],

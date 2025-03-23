@@ -63,6 +63,9 @@ export class ProfileComponent implements OnInit {
         return ''
     }
 
+    get isMerchant() {
+        return this.userData?.role === 'MERCHANT'
+    }
     async fetchUserData(userId: string) {
         this.isLoading = true;
         const result = await this.apiService.get({
@@ -97,6 +100,12 @@ export class ProfileComponent implements OnInit {
     openWalletEditOverlay() {
         this.selectedEditComponent = 'wallet';
         this.overlayTitle = 'Update Wallet';
+        this.animatePanel = true;
+    }
+
+    openQRUploadEditOverlay() {
+        this.selectedEditComponent = 'qrUpload';
+        this.overlayTitle = 'Upload Static QR';
         this.animatePanel = true;
     }
 
