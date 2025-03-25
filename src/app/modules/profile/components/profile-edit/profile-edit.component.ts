@@ -75,13 +75,13 @@ export class ProfileEditComponent {
         pincode: ['', [Validators.required, Validators.pattern(/^[0-9]{6}$/)]],
       }),
       merchant: this.fb.group({
-        shopName: ['', Validators.required],
-        gstNumber: ['', Validators.required],
+        shopName: [''],
+        gstNumber: [''],
         msmeNumber: [''],
       }),
       email: ['', [Validators.required, Validators.email]],
       userType: ['', Validators.required],
-      panNumber: ['', Validators.required],
+      panNumber: [''],
       aadharNumber: ['', Validators.required],
     });
     this.setFormBasedOnRole(this.userData?.role);

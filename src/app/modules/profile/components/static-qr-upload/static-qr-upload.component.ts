@@ -10,6 +10,7 @@ import { ApiService } from 'src/app/core/services/api.service';
 export class StaticQRUploadComponent {
   previewUrl: string | ArrayBuffer | null = null;
   isDragging = false;
+  merchantId: string = '';
   @Input() userId!: string;
   @Output() closeOverlay = new EventEmitter();
   selectedFile: File | null = null;
@@ -63,6 +64,7 @@ export class StaticQRUploadComponent {
 
     const formData = new FormData();
     formData.append('file', this.selectedFile);
+    formData.append('merchantId', this.merchantId)
 
     await this.apiService.put({
       params: this.userId,
