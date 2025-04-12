@@ -171,6 +171,37 @@
       </div>
     </div>
 
+    <!-- user documents -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4" *ngIf="userData.documents?.length">
+      <div *ngFor="let doc of userData.documents" class="bg-white rounded-xl shadow p-4 border relative">
+        <div class="flex justify-between items-start mb-2">
+          <h3 class="text-lg font-semibold text-primary">{{ doc.documentType }}</h3>
+          <a [href]="doc.documentUrl" target="_blank" download>
+            <svg-icon class="px-6 icon-gray text-24 leading-[1] cursor-pointer" src="assets\icons\heroicons\outline\download.svg"></svg-icon>
+          </a>
+        </div>
+    
+        <p class="text-sm text-muted-foreground mb-1">
+          <strong>Description:</strong> {{ doc.description }}
+        </p>
+    
+        <p class="text-sm text-muted-foreground mb-1">
+          <strong>Uploaded:</strong> {{ doc.createdDate| date:'mediumDate' }}
+        </p>
+    
+        <!-- <p class="text-sm">
+          <strong>Status:</strong>
+          <span [ngClass]="{
+            'text-green-600 font-medium': doc.,
+            'text-yellow-600 font-medium': !doc.verified
+          }">
+            {{ doc.verified ? 'Verified' : 'Pending Verification' }}
+          </span>
+        </p> -->
+      </div>
+    </div>
+    
+
     <!-- User Loans -->
     <div *ngIf="userData.loans?.length" class="overflow-x-auto">
       <table class="min-w-full bg-white border border-gray-200 shadow-md rounded-md">

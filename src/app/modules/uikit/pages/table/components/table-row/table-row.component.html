@@ -14,10 +14,10 @@
     </div>
   </td>
   <td>{{ user.userRole }}</td>
-  <td>
-    {{ user.dob }}
-  </td>
   <td>{{ user.aadharNumber }}</td>
+  <td>
+    {{ user.dob | date: 'dd MMM YYYY' }}
+  </td>
   <td>{{ user.panNumber }}</td>
   <td class="text-center">
     <input

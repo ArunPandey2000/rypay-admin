@@ -20,7 +20,7 @@ export class transactionsComponent implements OnInit {
   search = '';
   fromDate = new Date();
   toDate = new Date();
-  sortDirection = 'ASC';
+  sortDirection = 'DESC';
   transactionType = '';
   totalPages = 1;
   page = 1;

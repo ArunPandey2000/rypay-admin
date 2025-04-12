@@ -3,11 +3,12 @@ import { User } from '../../model/user.model';
 import { FormsModule } from '@angular/forms';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: '[app-table-row]',
   standalone: true,
-  imports: [FormsModule, AngularSvgIconModule],
+  imports: [FormsModule, AngularSvgIconModule, DatePipe],
   templateUrl: './table-row.component.html',
   styleUrl: './table-row.component.scss',
 })

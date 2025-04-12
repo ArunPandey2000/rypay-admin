@@ -8,7 +8,17 @@
   </div>
 </td>
 <td class="py-2 pl-2 text-center">
-  <span class="text-sm font-semibold text-muted-foreground">{{ transaction.amount | currency:'INR' }}</span>
+  <span 
+  class="text-sm font-semibold"
+  [ngClass]="{
+    'text-green-600': transaction.transactionType === 'CREDIT',
+    'text-red-600': transaction.transactionType === 'DEBIT'
+  }"
+>
+  {{ transaction.transactionType === 'CREDIT' ? '+' : '-' }}
+  {{ transaction.amount | currency:'INR' }}
+</span>
+
 </td>
 <td class="py-2 pl-2 text-center">
   <span class="text-sm font-semibold text-muted-foreground">{{ transaction.reference }}</span>
